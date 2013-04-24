@@ -21,8 +21,9 @@
   },
   "main": "index.js",
   "bin": {
-    "trust": "./bin/trust"
+    "onramp": "./bin/onramp"
   },
+  "preferGlobal": true,
   "optionalDependencies": {},
   "engines": {
     "node": "*"
