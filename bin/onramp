@@ -2,8 +2,13 @@
 
 var Onramp = require('../');
 
+// Create the onramp instance at the localhost
 var onramp = Onramp.create({hostname: '127.0.0.1'});
 
+// Whenever a connection is established, tell it about all the 
+// other connections available, and then broadcast it's connection
+// identifier to the rest of the connections so everyone always
+// knows who is connected to the onramp
 onramp.on("connection", function(connection){
 	var connections = onramp.getConnections(),
 		ids = connections.map(function(conn){
@@ -12,7 +17,6 @@ onramp.on("connection", function(connection){
 				return id != connection.id;
 			});
 	
-	//connection.send('remote addresses', ids);
 	ids.map(connection.send.bind(connection, 'remote address'));
 	onramp.broadcast('remote address', connection.id);
 });
