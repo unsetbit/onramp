@@ -1,0 +1,18 @@
+#!/usr/bin/env node
+
+var Onramp = require('../');
+
+var onramp = Onramp.create({hostname: '192.168.0.101'});
+
+onramp.on("connection", function(connection){
+	var connections = onramp.getConnections(),
+		ids = connections.map(function(conn){
+				return conn.id;
+			}).filter(function(id){ 
+				return id != connection.id;
+			});
+	
+	//connection.send('remote addresses', ids);
+	ids.map(connection.send.bind(connection, 'remote address'));
+	onramp.broadcast('remote address', connection.id);
+});
