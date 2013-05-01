@@ -10,13 +10,10 @@ var onramp = Onramp.create({hostname: '127.0.0.1'});
 // identifier to the rest of the connections so everyone always
 // knows who is connected to the onramp
 onramp.on("connection", function(connection){
-	var connections = onramp.getConnections(),
-		ids = connections.map(function(conn){
-				return conn.id;
-			}).filter(function(id){ 
-				return id != connection.id;
-			});
-	
-	ids.map(connection.send.bind(connection, 'remote address'));
-	onramp.broadcast('remote address', connection.id);
+	onramp.connections.forEach(function(other){
+		if(other === connection) return;
+		
+		connection.send('remote address', other.id);
+		other.send('remote address', connection.id);
+	});
 });
