@@ -3,7 +3,6 @@
   "description": "Web Socket Server to Connect to P2P Networks",
   "version": "0.1.0",
   "dependencies": {
-    "express":"3.1.2",
     "node-uuid":"~1.4.0",
     "websocket":"~1.0.8",
     "commander": "~1.1.1"
