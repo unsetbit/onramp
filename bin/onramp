@@ -1,19 +1,31 @@
 #!/usr/bin/env node
 
-var Onramp = require('../');
+var app = require('commander'),
+	Onramp = require('../');
+	
+app.version('0.1.0')	
 
-// Create the onramp instance at the localhost
-var onramp = Onramp.create({hostname: '127.0.0.1'});
+app.option('-h, --host [host]', 'The host of the onramp server');
 
-// Whenever a connection is established, tell it about all the 
-// other connections available, and then broadcast it's connection
-// identifier to the rest of the connections so everyone always
-// knows who is connected to the onramp
-onramp.on("connection", function(connection){
-	onramp.connections.forEach(function(other){
-		if(other === connection) return;
-		
-		connection.send('remote address', other.id);
-		other.send('remote address', connection.id);
+app.parse(process.argv);
+
+(function main(){
+	var host = app.host || '127.0.0.1:20500';
+
+	// Create the onramp instance at the localhost
+	var onramp = Onramp.create({host: host});
+
+	// Whenever a connection is established, tell it about all the 
+	// other connections available, and then broadcast it's connection
+	// identifier to the rest of the connections so everyone always
+	// knows who is connected to the onramp
+	onramp.on("connection", function(connection){
+		onramp.connections.forEach(function(other){
+			if(other === connection) return;
+			
+			connection.send('remote address', other.id);
+			other.send('remote address', connection.id);
+		});
 	});
-});
+}());
+

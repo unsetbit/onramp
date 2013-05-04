@@ -5,19 +5,10 @@
   "dependencies": {
     "express":"3.1.2",
     "node-uuid":"~1.4.0",
-    "websocket":"~1.0.8"
+    "websocket":"~1.0.8",
+    "commander": "~1.1.1"
   },
   "devDependencies": {
-    "grunt": "~0.4.0",
-    "grunt-hug": "~0.5.0",
-    "grunt-contrib-copy": "~0.4.0",
-    "grunt-contrib-clean": "~0.4.0",
-    "grunt-contrib-concat": "~0.2.0",
-    "grunt-contrib-jshint": "~0.4.0",
-    "grunt-contrib-watch": "~0.3.1",
-    "grunt-contrib-uglify": "~0.2.0",
-    "grunt-contrib-livereload": "0.1.2",
-    "grunt-contrib-connect": "~0.3.0"
   },
   "main": "index.js",
   "bin": {
