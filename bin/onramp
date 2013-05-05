@@ -10,7 +10,7 @@ app.option('-h, --host [host]', 'The host of the onramp server');
 app.parse(process.argv);
 
 (function main(){
-	var host = app.host || '127.0.0.1:20500';
+	var host = app.host;
 
 	// Create the onramp instance at the localhost
 	var onramp = Onramp.create({host: host});
@@ -20,6 +20,7 @@ app.parse(process.argv);
 	// identifier to the rest of the connections so everyone always
 	// knows who is connected to the onramp
 	onramp.on("connection", function(connection){
+		console.log('new connection: ' + connection.id);
 		onramp.connections.forEach(function(other){
 			if(other === connection) return;
 			
