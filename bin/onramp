@@ -3,7 +3,7 @@
 var app = require('commander'),
 	Onramp = require('../');
 	
-app.version('0.1.0')	
+app.version('0.2.0')	
 
 app.option('-h, --host [host]', 'The host of the onramp server');
 
@@ -24,8 +24,8 @@ app.parse(process.argv);
 		onramp.connections.forEach(function(other){
 			if(other === connection) return;
 			
-			connection.send('remote address', other.id);
-			other.send('remote address', connection.id);
+			connection.send(other.id);
+			other.send(connection.id);
 		});
 	});
 }());
