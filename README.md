@@ -11,5 +11,5 @@ peer-to-peer network of browsers.
 
 You can pass `-h [host]` to change set the host of the server. By default it will use "localhost:20500".
 
-onramp currently only serves the localhost and is purpose-built to work with [P](https://github.com/oztu/p).
+onramp is purpose-built to work with [P](https://github.com/oztu/p).
 
