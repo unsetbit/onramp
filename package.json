@@ -1,7 +1,7 @@
 {
   "name": "onramp",
   "description": "Web Socket Server to Connect to P2P Networks",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "dependencies": {
     "node-uuid": "~1.4.0",
     "websocket": "~1.0.8",
